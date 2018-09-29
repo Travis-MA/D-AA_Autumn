@@ -13,21 +13,15 @@ int c[enf];
 int ans;
 
 bool okok(int mid){
-    //cout << "iiinit mid: " << mid << endl;
     for(int i = 0; i<n+1; i++){
         c[i] = 0;
     }
     
     for(int i = 0; i<=mid; i++){
-        //cout <<"L: " << L <<" R: " << R <<" add: "<< order_table_0[i] << endl;
         c[order_table_1[i] - 1] += order_table_0[i];
         c[order_table_2[i]] -= order_table_0[i];  
     }
-    /*
-    cout << "middle: "<< mid << endl;  
-    for(int i = 0; i<n+1; i++){
-        cout <<" c[" <<i<<"]: " << c[i] << endl;
-    }*/
+    
     long sum[n];
     sum[0] = c[0];
     for(int i = 1; i<n; i++){
@@ -39,21 +33,7 @@ bool okok(int mid){
             return false;
         }
     }
-    /*
-    for(int i = 0; i<n; i++){
-        room = 0;
-        sum = 0;
-        for(int j = 0; j<=i; j++){
-            //cout << "sum: " << sum << " c[" <<j<<"]: " << c[j] << endl;
-            sum += c[j];
-        }
-        room = room_table[i] - sum;
-        //cout << "roomL : " << room  <<" sum: "<< sum  << endl;
-        
-        if(room<0){
-            return false;
-        }
-    }*/
+    
 
     return true;
 }
@@ -79,7 +59,6 @@ int main(){
     while(cin >> n){
         int m;
         scanf("%d", &m);
-        //cout << "init: " << m << endl;
         for(int i = 0; i<n; i++) scanf("%d", room_table+i);
         
         for(int i = 0; i<m; i++) scanf("%d%d%d", order_table_0+i, order_table_1+i, order_table_2+i);

@@ -10,34 +10,25 @@ int l,n,m;
 
 
 bool check(int mid){
-    int step = 1;
-    int pivots = 0;
-    int i = 0;
-    int twist = 0;
-    while(i<n+2){
-        if(place[i] - place[pivots] > mid || place[n+1] - place[pivots] == mid){
-            int new_pivots = i-1;
-            cout << "pivots: " << new_pivots << endl;
-            i--;
-            if(new_pivots == pivots){
-                return false;
-            }
-            twist += place[new_pivots] - place[pivots];
-            pivots = new_pivots;
-            
-            step++;
-            if(step > m){
-                return false;
+    int man = 1;
+    int pivot = place[0];
+    for(int i = 0; i<(n+2); i++){
+        for(int i = 0; i<(n+2); i++){
+            if((place[i+1] - pivot) > mid && (place[i] - pivot) <= mid){
+                man++;
+                pivot = place[i];
+                if(man > m){
+                    return false;
+                }
+                break;
             }
         }
-        i++;
     }
-    cout << "step: " << step << endl;
-    if(step <= n){
-        return true;
-    }
-    
+   return true;
+   
 }
+
+
 
 double solve(int l, int r){
     int mid;
